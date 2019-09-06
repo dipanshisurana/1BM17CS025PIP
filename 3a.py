@@ -1,4 +1,3 @@
-import sys
 n=int(input("Enter the number:"))
 list=[]
 def printDivisors(n) : 
@@ -8,8 +7,6 @@ def printDivisors(n) :
             list.append(i) 
         i = i + 1
     print(list)
-          
-# Driver program to test above function 
 print("The divisors are:") 
 printDivisors(n) 
      
