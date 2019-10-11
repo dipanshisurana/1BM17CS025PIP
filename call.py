@@ -1,35 +1,26 @@
-class CallDetail:
-
-    def __init__(self, detailString):
-        detailString = detailString.split(",")
-        self.caller = detailString[0]
-        self.receiver = detailString[1]
-        self.duration = detailString[2]
-        self.callType = detailString[3]
-
-    def getData(self):
-        print("Caller:", self.caller)
-        print("Receiver:", self.receiver)
-        print("Call Duration:", self.duration)
-        print("Call Type:", self.callType)
-
+class CallDetails(object) :
+	def __init__(self,number,sender,receiver,duration,typ):
+		self.number=number
+		self.sender=sender
+		self.receiver=receiver
+		self.duration=duration
+		self.type=typ
 
 class Util:
+	def __init__(self):
+		self.list_of_call_objects =[]
+		
+	def parse_customer(self,list_of_call_st):
+		i=0		
+		for call in list_of_call_st:
+			i+=1
+			details = call.split(',')
+			self.list_of_call_objects.append(CallDetails(i,details[0],details[1],details[2],details[3]))
+	def show(self):
+		for obj in self.list_of_call_objects:
+			print("\nCustomer:",obj.number,"\nSender: ",obj.sender,"\nReceiver: " ,obj.receiver,"\nDuration :",obj.duration,"\nCall Type: ",obj.type)
 
-    def __init__(self):
-        self.list_of_call_objects=[]
 
-    def parse_customer(self,list_of_call_string):
-        for call in list_of_call_string:
-            callDetailObject = CallDetail(call)
-            self.list_of_call_objects.append(callDetailObject)
-
-    def showAllCalls(self):
-        i = 1
-        for call in self.list_of_call_objects:
-            print("Call", i, ":")
-            call.getData()
-            i += 1
 
 
 call='9990000001,9330000001,23,STD'
@@ -40,6 +31,7 @@ call3='9990000001,9330000003,6,ISD'
 
 list_of_call_string=[call,call2,call3]
 
-util = Util()
-util.parse_customer(list_of_call_string)
-util.showAllCalls()
+uobject=Util()
+uobject.parse_customer(list_of_call_string)
+uobject.show()
+
